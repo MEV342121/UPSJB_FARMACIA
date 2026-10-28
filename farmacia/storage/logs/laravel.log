@@ -1,0 +1,9 @@
+[2026-10-28 17:05:26] local.ERROR: Command "__" is not defined. {"exception":"[object] (Symfony\\Component\\Console\\Exception\\CommandNotFoundException(code: 0): Command \"__\" is not defined. at C:/laragon/www/UPSJB_FARMACIA/farmacia/vendor/symfony/console/Application.php:760)
+[stacktrace]
+#0 C:/laragon/www/UPSJB_FARMACIA/farmacia/vendor/symfony/console/Application.php(299): Symfony/Component/Console/Application->find('__')
+#1 C:/laragon/www/UPSJB_FARMACIA/farmacia/vendor/symfony/console/Application.php(196): Symfony/Component/Console/Application->doRun(Object(Symfony/Component/Console/Input/ArgvInput), Object(Symfony/Component/Console/Output/ConsoleOutput))
+#2 C:/laragon/www/UPSJB_FARMACIA/farmacia/vendor/laravel/framework/src/Illuminate/Foundation/Console/Kernel.php(205): Symfony/Component/Console/Application->run(Object(Symfony/Component/Console/Input/ArgvInput), Object(Symfony/Component/Console/Output/ConsoleOutput))
+#3 C:/laragon/www/UPSJB_FARMACIA/farmacia/vendor/laravel/framework/src/Illuminate/Foundation/Application.php(1243): Illuminate/Foundation/Console/Kernel->handle(Object(Symfony/Component/Console/Input/ArgvInput), Object(Symfony/Component/Console/Output/ConsoleOutput))
+#4 C:/laragon/www/UPSJB_FARMACIA/farmacia/artisan(16): Illuminate/Foundation/Application->handleCommand(Object(Symfony/Component/Console/Input/ArgvInput))
+#5 {main}
+"} 

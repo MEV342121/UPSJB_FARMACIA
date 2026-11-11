@@ -1,12 +1,12 @@
 <?php
 
+use App\Http\Controllers\CategoryController;
+use App\Models\Medicamento;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
-    return view('welcome');
+    return view('template.administrador');
 });
-
-use App\Models\Medicamento;
 
 Route::get('/medicamentos', function () {
     return Medicamento::with('categoria')->get();
@@ -15,3 +15,5 @@ Route::get('/medicamentos', function () {
 Route::get('/medicamentos/{id}', function ($id) {
     return Medicamento::with('categoria')->findOrFail($id);
 });
+
+Route::resource('categories', CategoryController::class)->except('show');

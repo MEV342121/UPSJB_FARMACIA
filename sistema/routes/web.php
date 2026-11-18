@@ -1,19 +1,16 @@
 <?php
 
-use App\Http\Controllers\CategoryController;
-use App\Models\Medicamento;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\CategoryController;
+use App\Http\Controllers\DashboardController;
+use App\Http\Controllers\RolController;
 
-Route::get('/', function () {
-    return view('template.administrador');
-});
 
-Route::get('/medicamentos', function () {
-    return Medicamento::with('categoria')->get();
-});
 
-Route::get('/medicamentos/{id}', function ($id) {
-    return Medicamento::with('categoria')->findOrFail($id);
-});
+Route::get('/', [DashboardController::class, 'index'])->name('dashboard.index'); 
 
 Route::resource('categories', CategoryController::class)->except('show');
+
+Route::resource('roles', RolController::class)->except('show');
+
+Route::resource('customer', CustomerController::class)->except('show');

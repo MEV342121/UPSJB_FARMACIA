@@ -9,7 +9,7 @@ use Illuminate\Database\Eloquent\Relations\HasMany;
 
 #[Table('roles')]
 #[Fillable(['nombre', 'descripcion'])]
-class Rol extends Model
+class Role extends Model
 {
     public function usuarios(): HasMany
     {

@@ -8,6 +8,19 @@
 @section('module', 'Configuraciones')
 
 @section('content')
+@if (session('ok'))
+    <div class="alert alert-success alert-dismissible fade show" role="alert">
+        {{ session('ok') }}
+        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Cerrar"></button>
+    </div>
+@endif
+@if (session('error'))
+    <div class="alert alert-danger alert-dismissible fade show" role="alert">
+        {{ session('error') }}
+        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Cerrar"></button>
+    </div>
+@endif
+
     <div class="card bg-white border-0 shadow-sm border-5 border-top border-secondary">
         <div class="card-header bg-white">
             <div class="row">
@@ -44,9 +57,9 @@
                                         <i class="bi bi-three-dots-vertical"></i>
                                     </button>
                                     <ul class="dropdown-menu dropdown-menu-end">
-                                        <li><a class="dropdown-item" href="{{ route('categories.edit', $category) }}">Editar</a></li>
+                                        <li><a class="dropdown-item" href="{{ route('categories.edit', $category->id) }}">Editar</a></li>
                                         <li>
-                                            <form action="{{ route('categories.destroy', $category) }}" method="POST"
+                                            <form action="{{ route('categories.destroy', $category->id) }}" method="POST"
                                             onsubmit="return confirm('¿Estas seguro de eliminar este registro?')">
                                                 @csrf
                                                 @method('DELETE')
@@ -57,6 +70,9 @@
                                 </div>
                             </td>
                         </tr>
+                        @php
+                            $contador++;
+                        @endphp
                     @endforeach
                 </tbody>
             </table>

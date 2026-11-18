@@ -18,7 +18,7 @@
       <p class="sidebar-section-title text-white-50 text-uppercase fw-semibold px-3 mb-2 mt-2">Principal</p>
       <ul class="nav flex-column gap-1 mb-1">
         <li class="nav-item">
-          <a href="" class="nav-link sidebar-link text-white-50 rounded-4 px-3 py-2 d-flex align-items-center gap-2 active_item" aria-current="">
+          <a href="{{route ('dashboard.index')}}" class="nav-link sidebar-link text-white-50 rounded-4 px-3 py-2 d-flex align-items-center gap-2 {{request()->is(['/']) ? 'active_item' : null}}" aria-current="{{request()->is(['/'])? 'page' : null}}">
             <i class="bi bi-house-door fs-6"></i><span class="small fw-medium">Dashboard</span>
           </a>
         </li>
@@ -51,7 +51,7 @@
       <p class="sidebar-section-title text-white-50 text-uppercase fw-semibold px-3 mb-2 mt-3">Configuraciones</p>
       <ul class="nav flex-column gap-1">
         <li class="nav-item">
-          <a href="" class="nav-link sidebar-link text-white-50 rounded-4 px-3 py-2 d-flex align-items-center gap-2" aria-current="">
+          <a href="{{route ('roles.index')}}" class="nav-link sidebar-link text-white-50 rounded-4 px-3 py-2 d-flex align-items-center gap-2 {{request()->is(['roles*']) ? 'active_item' : null}}" aria-current="{{request()->is(['roles'])? 'page' : null}}">
             <i class="bi bi-shield fs-6"></i><span class="small fw-medium">Roles</span>
           </a>
         </li>
@@ -61,7 +61,7 @@
           </a>
         </li>
         <li class="nav-item">
-          <a href="" class="nav-link sidebar-link text-white-50 rounded-4 px-3 py-2 d-flex align-items-center gap-2" aria-current="">
+          <a href="{{route('categories.index')}}" class="nav-link sidebar-link text-white-50 rounded-4 px-3 py-2 d-flex align-items-center gap-2 {{request()->is(['categories*']) ? 'active_item' : null}} " aria-current="{{request()->is(['categories'])? 'page' : null}}">
             <i class="bi bi-grid fs-6"></i><span class="small fw-medium">Categorías</span>
           </a>
         </li>

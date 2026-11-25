@@ -3,16 +3,15 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Attributes\Fillable;
-use Illuminate\Database\Eloquent\Attributes\Table;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 
-#[Table('roles')]
-#[Fillable(['nombre', 'descripcion'])]
+#[Fillable(['name', 'description'])]
 class Role extends Model
 {
-    public function usuarios(): HasMany
+    // Un rol tiene muchos usuarios
+    public function users(): HasMany
     {
-        return $this->hasMany(User::class, 'rol_id');
+        return $this->hasMany(User::class);
     }
 }

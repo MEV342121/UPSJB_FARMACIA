@@ -12,12 +12,18 @@ use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 
-#[Fillable(['name', 'email', 'password', 'rol_id', 'dni', 'telefono', 'colegiatura'])]
+#[Fillable(['role_id', 'name', 'dni', 'phone', 'tuition', 'email', 'password'])]
 #[Hidden(['password', 'remember_token'])]
 class User extends Authenticatable
 {
     /** @use HasFactory<UserFactory> */
     use HasFactory, Notifiable;
+
+    // Comprueba si el usuario tiene alguno de los roles indicados.
+    public function hasRole(string ...$roles): bool
+    {
+        return $this->role()->whereIn('name', $roles)->exists();
+    }
 
     /**
      * Get the attributes that should be cast.
@@ -28,17 +34,19 @@ class User extends Authenticatable
     {
         return [
             'email_verified_at' => 'datetime',
-            'password' => 'hashed',
+            'password' => 'hashed', // la contraseña se encripta sola al guardar
         ];
     }
 
-    public function rol(): BelongsTo
+    // Un usuario pertenece a un rol
+    public function role(): BelongsTo
     {
-        return $this->belongsTo(Rol::class);
+        return $this->belongsTo(Role::class);
     }
 
-    public function ventas(): HasMany
+    // Un usuario registra muchas ventas
+    public function sales(): HasMany
     {
-        return $this->hasMany(Venta::class);
+        return $this->hasMany(Sale::class);
     }
 }

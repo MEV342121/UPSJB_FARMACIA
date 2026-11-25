@@ -13,12 +13,12 @@
 
 <div id="app-wrapper" class="d-flex">
 
-  <!--sidebar -->
-  @include("partials.sidebar")
+<!-- sidebar -->
+ @include("partials.sidebar")
 
   <div class="main-wrapper d-flex flex-column flex-grow-1 overflow-hidden">
-    <!--header-->
-    @include("partials.header")
+    <!-- header -->
+     @include("partials.header")
 
 
     <main class="app-content flex-grow-1 overflow-y-auto p-3 p-lg-4">
@@ -33,12 +33,12 @@
                   <span>@yield('item_section')</span>
               </li>
                <li class="breadcrumb-item text-muted fw-medium" aria-current="page">
-                <a href="" class="text-decoration-none text-secondary d-flex align-items-center gap-1">
+                <a href="@yield('route_section')" class="text-decoration-none text-secondary d-flex align-items-center gap-1">
                   @yield('section')
                 </a>
               </li>
               <li class="breadcrumb-item">
-                <span class="text-secondary">@yield('modulo')</span>
+                <span class="text-secondary">@yield('module')</span>
               </li>
             </ol>
           </nav>
@@ -51,10 +51,9 @@
             (KPIs, gráficos, tablas, formularios, etc.)
             En Laravel: 
         -->
-           
 
+        @yield('content')
 
-      @yield('content')  
       </div>
     </main>
 
@@ -62,12 +61,15 @@
 </div>
 
 <!-- MODAL — Confirmar Cierre de Sesión -->
-<!--modal-logout.blade.php-->
-@include("partials.modal-logout")
+ @include("partials.modal-logout")
+
 
 <script src="https://code.jquery.com/jquery-3.7.1.js"></script>
 <script src="{{ asset('js/bootstrap.bundle.min.js') }}"></script>
 <script src="{{ asset('js/app.js') }}"></script>
+
+{{-- Scripts propios de cada vista (@push('scripts')) --}}
+@stack('scripts')
 
 
 </body>

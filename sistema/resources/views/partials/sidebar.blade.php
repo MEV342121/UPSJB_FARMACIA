@@ -1,5 +1,4 @@
-<aside id="sidebar" class="bg-dark text-white d-flex flex-column flex-shrink-0" aria-label="Navegación principal">
-
+  <aside id="sidebar" class="bg-dark text-white d-flex flex-column flex-shrink-0" aria-label="Navegación principal">
     <div class="d-flex align-items-center px-3 pt-4 pb-3">
       <div class="brand-icon rounded-circle bg-primary d-flex align-items-center justify-content-center me-2 flex-shrink-0">
         <i class="bi bi-plus-lg text-white fs-5 fw-bold"></i>
@@ -18,7 +17,7 @@
       <p class="sidebar-section-title text-white-50 text-uppercase fw-semibold px-3 mb-2 mt-2">Principal</p>
       <ul class="nav flex-column gap-1 mb-1">
         <li class="nav-item">
-          <a href="{{route ('dashboard.index')}}" class="nav-link sidebar-link text-white-50 rounded-4 px-3 py-2 d-flex align-items-center gap-2 {{request()->is(['/']) ? 'active_item' : null}}" aria-current="{{request()->is(['/'])? 'page' : null}}">
+          <a href="{{ route('dashboard.index') }}" class="nav-link sidebar-link text-white-50 rounded-4 px-3 py-2 d-flex align-items-center gap-2 {{ request()->is(['/']) ? 'active_item' : null }}" aria-current="{{ request()->is(['/']) ? 'page' : null }}">
             <i class="bi bi-house-door fs-6"></i><span class="small fw-medium">Dashboard</span>
           </a>
         </li>
@@ -31,44 +30,54 @@
 
       <p class="sidebar-section-title text-white-50 text-uppercase fw-semibold px-3 mb-2 mt-3">Gestión</p>
       <ul class="nav flex-column gap-1 mb-1">
+        @if (auth()->check() && auth()->user()->hasRole('Administrador', 'Químico farmacéutico'))
             <li class="nav-item">
-            <a href="" class="nav-link sidebar-link text-white-50 rounded-4 px-3 py-2 d-flex align-items-center gap-2" aria-current="">
+            <a href="{{ route('medicines.index') }}" class="nav-link sidebar-link text-white-50 rounded-4 px-3 py-2 d-flex align-items-center gap-2 {{ request()->is(['medicines*']) ? 'active_item' : null }}" aria-current="{{ request()->is(['medicines*']) ? 'page' : null }}">
             <i class="bi bi-box-seam fs-6"></i><span class="small fw-medium">Medicamentos</span>
           </a>
         </li>
+            <li class="nav-item">
+              <a href="{{ route('suppliers.index') }}" class="nav-link sidebar-link text-white-50 rounded-4 px-3 py-2 d-flex align-items-center gap-2 {{ request()->is(['suppliers*']) ? 'active_item' : null }}" aria-current="{{ request()->is(['suppliers*']) ? 'page' : null }}">
+                <i class="bi bi-truck fs-6"></i><span class="small fw-medium">Proveedores</span>
+              </a>
+            </li>
+        @endif
         <li class="nav-item">
-          <a href="" class="nav-link sidebar-link text-white-50 rounded-4 px-3 py-2 d-flex align-items-center gap-2" aria-current="">
+          <a href="{{ route('customers.index') }}" class="nav-link sidebar-link text-white-50 rounded-4 px-3 py-2 d-flex align-items-center gap-2 {{ request()->is(['customers*']) ? 'active_item' : null }}" aria-current="{{ request()->is(['customers*']) ? 'page' : null }}">
             <i class="bi bi-people fs-6"></i><span class="small fw-medium">Clientes</span>
           </a>
         </li>
         <li class="nav-item">
-          <a href="" class="nav-link sidebar-link text-white-50 rounded-4 px-3 py-2 d-flex align-items-center gap-2" aria-current="">
+          <a href="{{ route('sales.index') }}" class="nav-link sidebar-link text-white-50 rounded-4 px-3 py-2 d-flex align-items-center gap-2 {{ request()->is(['sales*']) ? 'active_item' : null }}" aria-current="{{ request()->is(['sales*']) ? 'page' : null }}">
             <i class="bi bi-cart3 fs-6"></i><span class="small fw-medium">Ventas</span>
           </a>
         </li>
       </ul>
 
+      @if (auth()->check() && auth()->user()->hasRole('Administrador'))
       <p class="sidebar-section-title text-white-50 text-uppercase fw-semibold px-3 mb-2 mt-3">Configuraciones</p>
       <ul class="nav flex-column gap-1">
         <li class="nav-item">
-          <a href="{{route ('roles.index')}}" class="nav-link sidebar-link text-white-50 rounded-4 px-3 py-2 d-flex align-items-center gap-2 {{request()->is(['roles*']) ? 'active_item' : null}}" aria-current="{{request()->is(['roles'])? 'page' : null}}">
+          <a href="{{ route('roles.index') }}" class="nav-link sidebar-link text-white-50 rounded-4 px-3 py-2 d-flex align-items-center gap-2 {{ request()->is(['roles*']) ? 'active_item' : null }}" aria-current="{{ request()->is(['roles*']) ? 'page' : null }}">
             <i class="bi bi-shield fs-6"></i><span class="small fw-medium">Roles</span>
           </a>
         </li>
         <li class="nav-item">
-          <a href="" class="nav-link sidebar-link text-white-50 rounded-4 px-3 py-2 d-flex align-items-center gap-2" aria-current="">
+          <a href="{{ route('users.index') }}" class="nav-link sidebar-link text-white-50 rounded-4 px-3 py-2 d-flex align-items-center gap-2 {{ request()->is(['users*']) ? 'active_item' : null }}" aria-current="{{ request()->is(['users*']) ? 'page' : null }}">
             <i class="bi bi-person-gear fs-6"></i><span class="small fw-medium">Usuarios</span>
           </a>
         </li>
         <li class="nav-item">
-          <a href="{{route('categories.index')}}" class="nav-link sidebar-link text-white-50 rounded-4 px-3 py-2 d-flex align-items-center gap-2 {{request()->is(['categories*']) ? 'active_item' : null}} " aria-current="{{request()->is(['categories'])? 'page' : null}}">
+          <a href="{{ route('categories.index') }}" class="nav-link sidebar-link text-white-50 rounded-4 px-3 py-2 d-flex align-items-center gap-2 {{ request()->is(['categories*']) ? 'active_item' : null }}" aria-current="{{ request()->is(['categories*']) ? 'page' : null }}">
             <i class="bi bi-grid fs-6"></i><span class="small fw-medium">Categorías</span>
           </a>
         </li>
       </ul>
+      @endif
 
     </nav>
 
+    @auth
     <div class="dropup" style="border-top:1px solid rgba(255,255,255,.1)">
       <button class="btn w-100 d-flex align-items-center gap-2 text-start px-3 py-3 sidebar-user-btn"
               id="userMenuToggle"
@@ -78,11 +87,12 @@
               aria-haspopup="true"
               aria-label="Opciones de cuenta">
         <div class="user-avatar rounded-circle bg-primary d-flex align-items-center justify-content-center flex-shrink-0">
-          <span class="text-white fw-bold lh-1">SJ</span>
+          <span class="text-white fw-bold lh-1">{{ mb_strtoupper(mb_substr(auth()->user()->name, 0, 2)) }}</span>
         </div>
         <div class="lh-sm overflow-hidden flex-grow-1 text-start">
-          <div class="text-white fw-semibold small">Administrador</div>
-          <div class="text-white-50" style="font-size:.7rem">admin@sanjuan.com</div>
+          <div class="text-white fw-semibold small">{{ auth()->user()->name }}</div>
+          <div class="text-white-50" style="font-size:.7rem">{{ auth()->user()->email }}</div>
+          <div class="text-white-50" style="font-size:.7rem">{{ auth()->user()->role?->name ?? 'Sin rol' }}</div>
         </div>
         <i class="bi bi-chevron-up text-white-50 small user-menu-chevron"></i>
       </button>
@@ -93,9 +103,9 @@
               <span class="text-white fw-bold small">SJ</span>
             </div>
             <div class="lh-sm overflow-hidden">
-              <div class="fw-semibold small">Administrador</div>
-              <div class="text-secondary" style="font-size:.7rem">admin@sanjuan.com</div>
-              <span class="badge bg-primary-subtle text-primary mt-1 px-2 rounded-pill" style="font-size:.6rem;font-weight:600">Super Admin</span>
+              <div class="fw-semibold small">{{ auth()->user()->name }}</div>
+              <div class="text-secondary" style="font-size:.7rem">{{ auth()->user()->email }}</div>
+              <span class="badge bg-primary-subtle text-primary mt-1 px-2 rounded-pill" style="font-size:.6rem;font-weight:600">{{ auth()->user()->role?->name ?? 'Sin rol' }}</span>
             </div>
           </div>
         </li>
@@ -106,5 +116,9 @@
         <li><a class="dropdown-item d-flex align-items-center gap-2 py-2 small text-danger fw-medium" href="#" data-bs-toggle="modal" data-bs-target="#logoutModal"><i class="bi bi-box-arrow-right fs-6"></i>Cerrar Sesión</a></li>
       </ul>
     </div>
-
+    @else
+    <div class="p-3" style="border-top:1px solid rgba(255,255,255,.1)">
+      <a href="{{ route('login') }}" class="btn btn-primary text-white w-100">Iniciar sesión</a>
+    </div>
+    @endauth
   </aside>

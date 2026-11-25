@@ -15,9 +15,12 @@
       <div class="modal-footer border-top justify-content-center py-3 gap-2">
         <button type="button" class="btn btn-sm btn-outline-secondary px-4"
                 data-bs-dismiss="modal">Cancelar</button>
-        <button type="button" class="btn btn-sm btn-danger px-4" id="confirmLogoutBtn">
-          <i class="bi bi-box-arrow-right me-1"></i>Salir
-        </button>
+        <form action="{{ route('logout') }}" method="POST" class="m-0">
+          @csrf
+          <button type="submit" class="btn btn-sm btn-danger px-4">
+            <i class="bi bi-box-arrow-right me-1"></i>Salir
+          </button>
+        </form>
       </div>
 
     </div>

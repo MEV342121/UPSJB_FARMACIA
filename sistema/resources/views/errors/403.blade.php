@@ -6,6 +6,9 @@
   <title>FARM SJB | Acceso denegado</title>
   <link rel="stylesheet" href="{{ asset('css/bootstrap.css') }}">
   <link rel="stylesheet" href="{{ asset('css/custom.css') }}">
+  <link rel="stylesheet" href="{{ asset('css/bootstrap.css') }}">
+  <link rel="stylesheet" href="{{ asset('css/custom.css') }}">
+  <link rel="manifest" href="{{ asset('manifest.webmanifest') }}">
 </head>
 <body class="d-flex align-items-center justify-content-center min-vh-100 p-3">
   {{-- Laravel muestra esta vista sola cuando ocurre abort(403) --}}
@@ -19,5 +22,6 @@
       Si crees que es un error, habla con el administrador del sistema.</p>
     <a href="{{ route('dashboard.index') }}" class="btn btn-primary text-white">Volver al inicio</a>
   </div>
+  <script src="{{ asset('js/pwa.js') }}"></script>
 </body>
 </html>

@@ -8,6 +8,9 @@
   {{-- asset(): rutas desde public/, igual que en la plantilla --}}
   <link rel="stylesheet" href="{{ asset('css/bootstrap.css') }}">
   <link rel="stylesheet" href="{{ asset('css/custom.css') }}">
+  <link rel="stylesheet" href="{{ asset('css/bootstrap.css') }}">
+  <link rel="stylesheet" href="{{ asset('css/custom.css') }}">
+  <link rel="manifest" href="{{ asset('manifest.webmanifest') }}">
 </head>
 <body>
 <main class="login-wrapper d-flex">
@@ -133,5 +136,6 @@
     submit.querySelector('.btn-label').textContent = 'Ingresando...';
   });
 </script>
+<script src="{{ asset('js/pwa.js') }}"></script>
 </body>
 </html>

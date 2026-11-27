@@ -19,12 +19,6 @@ class User extends Authenticatable
     /** @use HasFactory<UserFactory> */
     use HasFactory, Notifiable;
 
-    // Comprueba si el usuario tiene alguno de los roles indicados.
-    public function hasRole(string ...$roles): bool
-    {
-        return $this->role()->whereIn('name', $roles)->exists();
-    }
-
     /**
      * Get the attributes that should be cast.
      *
@@ -42,6 +36,12 @@ class User extends Authenticatable
     public function role(): BelongsTo
     {
         return $this->belongsTo(Role::class);
+    }
+
+    // ¿El usuario tiene alguno de estos roles? $user->hasRole('Administrador', 'Cajero')
+    public function hasRole(string ...$roles): bool
+    {
+        return in_array($this->role->name, $roles);
     }
 
     // Un usuario registra muchas ventas

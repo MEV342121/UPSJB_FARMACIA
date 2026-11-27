@@ -5,7 +5,6 @@ namespace App\Http\Controllers;
 use App\Models\Customer;
 use App\Models\Medicine;
 use App\Models\Sale;
-use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Validation\ValidationException;
@@ -24,10 +23,9 @@ class SaleController extends Controller
     public function create()
     {
         $customers = Customer::orderBy('name')->get();
-        $users = User::orderBy('name')->get();
         $medicines = Medicine::where('stock', '>', 0)->orderBy('name')->get();
 
-        return view('management.sales.create', compact('customers', 'users', 'medicines'));
+        return view('management.sales.create', compact('customers', 'medicines'));
     }
 
     // Guardar la venta con sus detalles
@@ -35,7 +33,6 @@ class SaleController extends Controller
     {
         $request->validate([
             'customer_id' => 'required|exists:customers,id',
-            'user_id' => 'required|exists:users,id',
             'items' => 'required|array|min:1',
             'items.*.medicine_id' => 'required|distinct|exists:medicines,id',
             'items.*.amount' => 'required|integer|min:1',
@@ -49,7 +46,7 @@ class SaleController extends Controller
             // 1. Crear la venta (el total se calcula después)
             $sale = Sale::create([
                 'customer_id' => $request->customer_id,
-                'user_id' => $request->user_id,
+                'user_id' => auth()->id(), // el vendedor es quien inició sesión
                 'date' => now(),
                 'total' => 0,
                 'igv' => 0,

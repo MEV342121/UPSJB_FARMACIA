@@ -2,49 +2,48 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Contracts\View\View;
-use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
 class LoginController extends Controller
 {
-    // Muestra el formulario si el usuario aún no ha iniciado sesión.
-    public function showLoginForm(): View|RedirectResponse
+    // GET /login: muestra el formulario
+    public function showLoginForm()
     {
-        if (Auth::check()) {
-            return redirect()->route('dashboard.index');
-        }
-
         return view('auth.login');
     }
 
-    // Valida las credenciales e inicia la sesión del usuario.
-    public function login(Request $request): RedirectResponse
+    // POST /login: comprueba el correo y la contraseña
+    public function login(Request $request)
     {
+        // 1. Los dos campos son obligatorios
         $credentials = $request->validate([
             'email' => 'required|email',
             'password' => 'required',
         ]);
 
-        if (! Auth::attempt($credentials, $request->boolean('remember'))) {
-            return back()
-                ->withErrors(['email' => 'El correo o la contraseña no son correctos.'])
-                ->onlyInput('email');
+        // 2. Auth::attempt busca el correo y compara la contraseña con el hash guardado.
+        //    El segundo parámetro es la casilla «Recordarme».
+        if (Auth::attempt($credentials, $request->boolean('remember'))) {
+            // 3. Nuevo identificador de sesión (evita el robo de sesión)
+            $request->session()->regenerate();
+
+            // 4. Va a la página que quería abrir o, si no, al dashboard
+            return redirect()->intended(route('dashboard.index'));
         }
 
-        $request->session()->regenerate();
-
-        return redirect()->intended(route('dashboard.index'));
+        // 5. Datos incorrectos: vuelve al login con un mensaje y el correo escrito
+        return back()
+            ->withErrors(['email' => 'El correo o la contraseña no son correctos.'])
+            ->onlyInput('email');
     }
 
-    // Cierra la sesión e invalida sus datos.
-    public function logout(Request $request): RedirectResponse
+    // POST /logout: cierra la sesión
+    public function logout(Request $request)
     {
-        Auth::logout();
-
-        $request->session()->invalidate();
-        $request->session()->regenerateToken();
+        Auth::logout();                          // olvida al usuario
+        $request->session()->invalidate();       // borra los datos de la sesión
+        $request->session()->regenerateToken();  // nuevo token CSRF
 
         return to_route('login')->with('ok', 'Cerraste sesión correctamente.');
     }

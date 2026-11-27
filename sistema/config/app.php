@@ -65,7 +65,7 @@ return [
     |
     */
 
-    'timezone' => 'America/Lima',
+    'timezone' => 'America/Lima', // hora de Perú para las fechas de las ventas
 
     /*
     |--------------------------------------------------------------------------

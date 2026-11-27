@@ -6,8 +6,6 @@
   <title>FARM SJB | Acceso denegado</title>
   <link rel="stylesheet" href="{{ asset('css/bootstrap.css') }}">
   <link rel="stylesheet" href="{{ asset('css/custom.css') }}">
-  <link rel="stylesheet" href="{{ asset('css/bootstrap.css') }}">
-  <link rel="stylesheet" href="{{ asset('css/custom.css') }}">
   <link rel="manifest" href="{{ asset('manifest.webmanifest') }}">
 </head>
 <body class="d-flex align-items-center justify-content-center min-vh-100 p-3">

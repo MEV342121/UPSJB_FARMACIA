@@ -3,12 +3,13 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="description" content="San Juan  Sistema de Venta de Medicamentos">
+  <meta name="description" content="San Juan – Sistema de Venta de Medicamentos">
   <title>FARM SJB | @yield('title')</title>
   <link rel="stylesheet" href="{{ asset('css/bootstrap.css') }}">
   <link rel="stylesheet" href="{{ asset('css/custom.css') }}">
   <link rel="manifest" href="{{ asset('manifest.webmanifest') }}">
 </head>
+
 <body>
 
 <div id="app-wrapper" class="d-flex">
@@ -72,9 +73,6 @@
 @stack('scripts')
 
 <script src="{{ asset('js/pwa.js') }}"></script>
-
-</body>
-
 
 </body>
 </html>

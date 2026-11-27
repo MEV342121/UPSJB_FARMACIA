@@ -8,8 +8,6 @@
   {{-- asset(): rutas desde public/, igual que en la plantilla --}}
   <link rel="stylesheet" href="{{ asset('css/bootstrap.css') }}">
   <link rel="stylesheet" href="{{ asset('css/custom.css') }}">
-  <link rel="stylesheet" href="{{ asset('css/bootstrap.css') }}">
-  <link rel="stylesheet" href="{{ asset('css/custom.css') }}">
   <link rel="manifest" href="{{ asset('manifest.webmanifest') }}">
 </head>
 <body>
@@ -125,17 +123,4 @@
     const visible = password.type === 'text';
     password.type = visible ? 'password' : 'text';
     toggle.setAttribute('aria-label', visible ? 'Mostrar contraseña' : 'Ocultar contraseña');
-    toggle.querySelector('i').className = `bi ${visible ? 'bi-eye' : 'bi-eye-slash'} text-secondary`;
-  });
-
-  // Al enviar: desactiva el botón y muestra el spinner (el formulario SÍ se envía al servidor)
-  toggle.form.addEventListener('submit', () => {
-    const submit = document.getElementById('loginSubmit');
-    submit.disabled = true;
-    submit.querySelector('.spinner-border').classList.remove('d-none');
-    submit.querySelector('.btn-label').textContent = 'Ingresando...';
-  });
-</script>
-<script src="{{ asset('js/pwa.js') }}"></script>
-</body>
-</html>
+    toggle.querySelector
